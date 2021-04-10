@@ -31,12 +31,13 @@ class TaskService : Service() {
 
 
     private fun initStartTime() {
+        addNotification("Service Running..!")
         Thread().apply {
-            countDownTimer = object : CountDownTimer(20000, 1000) {
+            countDownTimer = object : CountDownTimer(120000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                     time = getSecondsForTimer(millisUntilFinished)
-                    addNotification("Service Running..!")
+
                     Log.d("TAG", "Timer Running:$time")
                 }
 
@@ -64,6 +65,7 @@ class TaskService : Service() {
     }
 
     private fun addNotification(service: String) {
+        Log.d("TAG", "Timer Running notification called")
         val builder = NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_baseline_insert_link_24)
                 .setContentTitle(service)
